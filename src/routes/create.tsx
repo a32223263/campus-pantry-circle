@@ -12,7 +12,7 @@ export const Route = createFileRoute("/create")({
 function Create() {
   const { addShare } = useStore();
   const nav = useNavigate();
-  const [f, setF] = useState({ title: "", category: "food" as Category, totalQty: 2, unitQty: 1, totalPrice: 0, pickupZone: PICKUP_ZONES[0], deadline: "오늘 21:00", description: "" });
+  const [f, setF] = useState({ title: "", category: "food" as Category, totalQty: 2, unitQty: 1, totalPrice: 0, pickupZone: PICKUP_ZONES[0] as string, deadline: "오늘 21:00", description: "" });
   const set = <K extends keyof typeof f>(k: K, v: (typeof f)[K]) => setF((p) => ({ ...p, [k]: v }));
   const ok = f.title.trim() && f.totalPrice > 0 && f.unitQty > 0 && f.totalQty >= f.unitQty * 2;
   const L = "mb-1 block text-sm font-semibold";
