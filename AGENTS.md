@@ -31,3 +31,4 @@ use the editor.
 
 - App state lives in `src/lib/store.tsx` (React Context + localStorage loaded after hydration); no backend yet — MVP simulates payments/GPS/email.
 - Pure share rules (pricing, deposit, status transitions, manner rating) live in `src/lib/share-logic.ts` with tests beside it, so UI and tests share one source.
+- `AppShell` owns the responsive layout (phone column + bottom nav below `lg`, sidebar + wide content from `lg`); pages pick desktop width via its `width` prop instead of their own outer wrappers, so both form factors stay consistent.

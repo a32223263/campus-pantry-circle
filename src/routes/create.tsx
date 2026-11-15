@@ -17,7 +17,7 @@ function Create() {
   const ok = f.title.trim() && f.totalPrice > 0 && f.unitQty > 0 && f.totalQty >= f.unitQty * 2;
   const L = "mb-1 block text-sm font-semibold";
   return (
-    <AppShell title="쉐어 등록" back>
+    <AppShell title="쉐어 등록" back width="narrow">
       <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); if (!ok) return; const id = addShare(f); nav({ to: "/share/$id", params: { id } }); }}>
         <div><label className={L} htmlFor="t">품목명</label><input id="t" className={input} placeholder="예: 우유 1L 반반 쉐어" value={f.title} onChange={(e) => set("title", e.target.value)} /></div>
         <div><span className={L}>카테고리</span><div className="flex gap-2">{(Object.keys(CATEGORY_LABEL) as Category[]).map((c) => (

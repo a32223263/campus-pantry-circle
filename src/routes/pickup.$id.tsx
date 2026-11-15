@@ -20,11 +20,11 @@ function Pickup() {
   const [tags, setTags] = useState<string[]>([]);
   const s = shares.find((x) => x.id === id);
   const j = joins.find((x) => x.shareId === id);
-  if (!s || !j) return <AppShell title="픽업" back><p className="py-10 text-center text-muted-foreground">{hydrated ? "참여한 쉐어가 아니에요." : "불러오는 중..."}</p></AppShell>;
+  if (!s || !j) return <AppShell title="픽업" back width="narrow"><p className="py-10 text-center text-muted-foreground">{hydrated ? "참여한 쉐어가 아니에요." : "불러오는 중..."}</p></AppShell>;
   const h = hosts.find((x) => x.id === s.hostId);
   const idx = STEPS.indexOf(j.status);
   return (
-    <AppShell title="안심 픽업" back>
+    <AppShell title="안심 픽업" back width="narrow">
       <h1 className="text-xl font-bold">{s.title}</h1>
       <ol className="mt-4 grid grid-cols-3 gap-2 text-center text-xs">
         {STEPS.map((st, i) => <li key={st} className={"rounded-xl py-2 font-semibold " + (i <= idx ? "bg-primary text-primary-foreground" : "bg-secondary text-muted-foreground")}>{STATUS_LABEL[st]}</li>)}

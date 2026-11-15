@@ -9,7 +9,7 @@ export const Route = createFileRoute("/notifications")({
 function Notis() {
   const { notis } = useStore();
   return (
-    <AppShell title="알림">
+    <AppShell title="알림" width="narrow">
       <ul className="space-y-2">{notis.map((n) => <li key={n.id} className={card + " text-sm"}><p>{n.text}</p><p className="mt-1 text-xs text-muted-foreground">{n.at}</p></li>)}</ul>
       {!notis.length && <p className="py-10 text-center text-muted-foreground">새 알림이 없어요.</p>}
     </AppShell>

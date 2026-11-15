@@ -22,10 +22,19 @@ function Login() {
 
   return (
     <AppShell requireAuth={false}>
-      <div className="pb-6 pt-10">
+      <div className="lg:grid lg:min-h-[calc(100vh-6rem)] lg:grid-cols-2 lg:items-center lg:gap-12">
+      <section className="lg:rounded-3xl lg:bg-accent lg:p-12">
+      <div className="pb-6 pt-10 lg:p-0">
         <p className="text-sm font-semibold text-primary">자취메이트</p>
-        <h1 className="mt-2 text-2xl font-bold leading-snug">대용량과 배달비는 반으로,<br />초근접 비대면 쉐어 라이프</h1>
+        <h1 className="mt-2 text-2xl font-bold leading-snug lg:text-4xl">대용량과 배달비는 반으로,<br />초근접 비대면 쉐어 라이프</h1>
       </div>
+      <ul className="mt-8 hidden space-y-3 text-accent-foreground lg:block">
+        <li className="flex items-center gap-2"><Mail className="size-5" />단국대 학교 이메일 인증</li>
+        <li className="flex items-center gap-2"><MapPin className="size-5" />정·후문 반경 500m 생활권 인증</li>
+        <li className="flex items-center gap-2"><ShieldCheck className="size-5" />보증금 예치 · 비대면 QR 픽업</li>
+      </ul>
+      </section>
+      <section className="lg:mx-auto lg:w-full lg:max-w-md">
       <ol className="mb-6 flex gap-2">{[1, 2, 3].map((n) => <li key={n} className={"h-1.5 flex-1 rounded-full " + (step >= n ? "bg-primary" : "bg-secondary")} />)}</ol>
 
       {step === 1 && (
@@ -61,6 +70,8 @@ function Login() {
           }}>{locating ? "위치 확인 중..." : <><ShieldCheck className="mr-2 size-5" />위치 인증하고 시작하기</>}</button>
         </div>
       )}
+      </section>
+      </div>
     </AppShell>
   );
 }

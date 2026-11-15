@@ -26,8 +26,10 @@ function Detail() {
   const left = remainingUnits(s);
   return (
     <AppShell title="쉐어 상세" back>
+      <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_360px] lg:items-start lg:gap-8">
+      <div className="min-w-0">
       <span className="text-sm font-semibold text-primary">{CATEGORY_LABEL[s.category]}</span>
-      <h1 className="text-2xl font-bold">{s.title}</h1>
+      <h1 className="text-2xl font-bold lg:text-3xl">{s.title}</h1>
       <p className="mt-1 text-3xl font-bold">{won(price)} <span className="text-base font-normal text-muted-foreground">/ 1인 ({s.unitQty}개)</span></p>
       <div className={card + " mt-4 space-y-2 text-sm"}>
         <p className="flex gap-2"><Package className="size-4 text-primary" />총 {s.totalQty}개 · 남은 {left}/{totalUnits(s)}자리</p>
@@ -35,7 +37,9 @@ function Detail() {
         <p className="flex gap-2"><Clock className="size-4 text-primary" />마감 {s.deadline}</p>
       </div>
       {s.description && <p className="mt-4 leading-relaxed">{s.description}</p>}
-      {h && <div className={card + " mt-4 flex items-center justify-between"}>
+      </div>
+      <aside className="lg:sticky lg:top-24">
+      {h && <div className={card + " mt-4 lg:mt-0 flex items-center justify-between"}>
         <div><p className="text-xs text-muted-foreground">주최자</p><p className="font-semibold">{h.name}</p><p className="text-xs text-muted-foreground">거래 {h.trades}회</p></div>
         <Manner v={h.manner} /></div>}
       <div className={card + " mt-4 flex gap-3 bg-accent text-sm text-accent-foreground"}><ShieldCheck className="size-5 shrink-0" />
@@ -45,9 +49,11 @@ function Detail() {
           : joined ? <Link to="/pickup/$id" params={{ id: s.id }} className={btn}>픽업 화면 보기</Link>
           : <button className={btn} disabled={!left} onClick={() => setSheet(true)}>{left ? "참여하기 (자동 정산)" : "모집 마감"}</button>}
       </div>
+      </aside>
+      </div>
       {sheet && (
-        <div className="fixed inset-0 z-30 flex items-end justify-center bg-dark-point/50" onClick={() => setSheet(false)}>
-          <div role="dialog" aria-label="보증금 예치" className="w-full max-w-[480px] rounded-t-3xl bg-background p-6" onClick={(e) => e.stopPropagation()}>
+        <div className="fixed inset-0 z-30 flex items-end justify-center bg-dark-point/50 lg:items-center" onClick={() => setSheet(false)}>
+          <div role="dialog" aria-label="보증금 예치" className="w-full max-w-[480px] rounded-t-3xl bg-background p-6 lg:rounded-3xl" onClick={(e) => e.stopPropagation()}>
             <h2 className="text-lg font-bold">보증금 예치</h2>
             <dl className="mt-4 space-y-2 text-sm">
               <div className="flex justify-between"><dt>쉐어 대금</dt><dd>{won(price)}</dd></div>
